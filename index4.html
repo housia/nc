@@ -1,0 +1,560 @@
+
+<html>
+<head>
+<meta name="description" content="Model Viewer (VR / AR) • A-Frame">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="aframe.js"></script>
+<script src="component.js"></script>
+<script src="templatecomponent.js"></script>
+
+<link rel="stylesheet" href="css\bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="boxicons-master\css\boxicons.min.css">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="s
+  tylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+ 
+    <!-- <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script> -->
+ 
+  
+  <!-- <meta name="viewport" content="width=device-width"> -->
+  <!-- <script type="text/javascript" src="main1.js"> </script> -->
+
+
+<script>
+      function switchVideoToFirst() {
+  console.log("switching to first");
+  document.getElementById("skyVideoTemplate").setAttribute('template', 'src', "#firstVideo");
+  // document.getElementById("skyVideo").components.material.material.map.image.play();
+  document.getElementById("skyVideo").components.material.material.map.image.play();
+
+        
+
+  
+}
+
+function playVideo() {
+  document.getElementById("skyVideo").components.material.material.map.image.pause();
+}
+
+function replayVideo() {
+  document.getElementById("skyVideo").components.material.material.map.image.load();
+}
+
+
+</script>
+
+<style>
+  body {
+            opacity: -3;
+            transition: opacity 4.25s;
+            background-color: black;
+    }
+  </style>
+</head><!--   w w   w . d   e   m  o 2   s . c  o   m -->
+<!-- var vid = document.getElementById("myVideo");
+    vid.autoplay = false;
+    vid.load(); -->
+
+<body onload="document.body.style.opacity='1'">
+
+
+
+
+
+
+  <script>
+    // the component has to be defined before the <a-scene>
+    AFRAME.registerComponent("show-text", {
+      // a schema, so we can provide different <a-text>s
+      schema: {
+        txt: {type: "selector"}
+      },
+      // called upon initialisation
+      init: function() {
+        // on each click - toggle the visibility
+        this.el.addEventListener("mouseenter", evt => {
+          // if the text is invalid - lets get outta here
+          if (!this.data.txt) return; 
+          // get the current visibility
+          const visible = this.data.txt.getAttribute("visible") 
+          // set the visibility to its opposite
+          this.data.txt.setAttribute("visible", !visible) 
+        })
+        this.el.addEventListener("mouseleave", evt => {
+          // if the text is invalid - lets get outta here
+          if (!this.data.txt) return; 
+          // get the current visibility
+          const visible = this.data.txt.getAttribute("visible") 
+          // set the visibility to its opposite
+          this.data.txt.setAttribute("visible", false) 
+        })
+      }
+    })
+    </script>
+        <!-- <audio autoplay loop>
+    <source src="background.mp3" id="myvideo1" type="audio/mp3" />
+  </audio> -->
+
+
+    
+
+<a-scene cursor="rayOrigin: mouse"   vr-mode-ui="enabled:false">
+  <a-entity id="skyVideoTemplate" template="src: #"></a-entity>
+<a-assets>
+  <!-- <img id="duck" src="buttons\lock view.png"  foo="src:#duck"> -->
+    <img id="city" src="Lobby_1.png">
+</a-assets>
+
+<a-assets timeout="30000">
+  
+
+
+
+  
+
+  <img id="skyTexture" src="06-pop-up.png"> 
+  <!-- <img id="skyTexture1" src="Asset_8.png"> -->
+  <img id="skyTexture2" src="Asset_11.png">
+  <!-- <img id="skyTexture3" src="icons\02-info-circle (1).png"> -->
+  <img id="skyTexture4" src="Asset_10.png">
+  <img id="skyTexture6" src="Asset_9.png">
+
+  <img id="skyTexture5" src="01-hotsport.png">
+  <img id="skyTexture7" src="01-hotsport.png">
+
+
+
+
+</a-assets>
+<div class="zoom-in-zoom-out"></div>
+<a-sky id="image-360" rotation="0 0 0" radius="100" src="#city"></a-sky>
+
+<a-image src="#skyTexture" position="30.354 2.029 -7.221" rotation="0 270  0" scale="2 2 2" onclick="lightbox_open();"
+animation="property: scale; from: 2.3 2.3 2.3; to: 2.6 2.6 2.6; dur: 800; 
+dir: alternate; easing: linear; loop: true; pauseEvents: mouseenter; resumeEvents: mouseleave;" 
+  
+  >
+  <a-text  position="0.018 0.732 0.025" scale="1.5 1.5 1.5" value="Pop Up Video" align="center" visible="true" 
+              animation__click="property: visible; dur: 0; to: true; startEvents: switch" color="#c8091d">
+  </a-image>
+<!-- <a-image src="#skyTexture1" link="href:index2.html;"  width="3.5" height="2" scale="1 1 1" position="16.578 5.933 -0.186" rotation="-180.000 24.944 -180.000"  > <a-animation attribute="position" from="1 1 1" to="2 4 -8"
+  animation="property: scale; from: 1 1 1; to:2.5 2.5 2.5; loop: true; dur: 600 easing: easeInQuad; autoplay: true" ></a-image> -->
+  <!-- <a-image src="#skyTexture1" link="href:index2.php;" scale="1 1 1" position="-19.238 3.462 11.313" rotation="0 90 0" 
+  animation="property: scale; from: 1 1 1; to:1.2 1.2 1.2;  dur: 800; 
+  dir: alternate; easing: linear; loop: true; pauseEvents: mouseenter; resumeEvents: mouseleave;"
+  >
+  <a-text  position="0.018 0.732 0.025" scale="2 2 2" value="Operation Theatre" align="center" visible="true" 
+              animation__click="property: visible; dur: 0; to: true; startEvents: switch" color="#c8091d"></a-image> -->
+
+              
+  <!-- <a-image src="#skyTexture3"  scale="1.5 1.5 1.5" position="4 8.129 -24.148" rotation="0 360 0" 
+  animation="property: scale; from: 1.5 1.5 1.5; to:1.7 1.7 1.7;  dur: 800; 
+  dir: alternate; easing: linear; loop: true; pauseEvents: mouseenter; resumeEvents: mouseleave;" show-text="txt: #text-informations2">
+
+   <a-image id="text-informations2" src="#skyTexture1" value="Operation theatre" link="href:https://www.leica-microsystems.com/contact/contact-us-online/?nlc=20220302-SFDC-014471&inquiry_type=product_information&inquiry_type_level2=demo_request&how_can_we_help_you=Contact%20me%20for%20a%20demo%20on%20Mica%20Microhub&utm_source=neyroo&utm_medium=link&utm_campaign=21-GL-Mica;" visible="false" scale="1 1 1" position="1.946 0.761 -4.122" rotation="0 360 0" 
+   animation="property: scale; from: 1.5 1.5 1.5; to:1.7 1.7 1.7;  dur: 800; 
+   dir: alternate; easing: linear; loop: true; ">
+  </a-image>
+ 
+   <a-image id="text-informations2" src="#skyTexture1" value="Operation theatre" link="href:https://www.leica-microsystems.com/contact/contact-us-online/?nlc=20220302-SFDC-014471&inquiry_type=product_information&inquiry_type_level2=demo_request&how_can_we_help_you=Contact%20me%20for%20a%20demo%20on%20Mica%20Microhub&utm_source=neyroo&utm_medium=link&utm_campaign=21-GL-Mica;"  visible="false" scale="1 1 1" position="0.946 -0.078 -4.122" rotation="0 360 0" 
+   >
+  </a-image>
+</a-image> -->
+
+
+<a-image src="#skyTexture2" onclick="switchVideoToFirst() " visible="true" scale="1.1 1.1 1.1" position="25.016 -1.517 4" rotation="0 -90 0" 
+ 
+>
+</a-image>
+<a-image src="#skyTexture4" onclick="playVideo() " visible="true" scale="1.1 1.1 1.1" position="25.016 -1.517 6" rotation="0 -90 0" 
+
+>
+</a-image>
+<a-image src="#skyTexture6" onclick="replayVideo() " visible="true" scale="1.1 1.1 1.1" position="25.016 -1.517 8" rotation="0 -90 0" 
+
+>
+</a-image>
+
+<a-image src="#skyTexture5" onclick="hotspot() " link="href:index9.html;" visible="true" scale="1 1 1" position="-3.766 -2.691 -13.000" rotation="-90.000 360 90" 
+animation="property: scale; from: 1 1 1; to:1.2 1.2 1.2;  dur: 800; 
+dir: alternate; easing: linear; loop: true;">
+</a-image>
+
+<a-image src="#skyTexture7" onclick="hotspot() " link="href:index8.html;" visible="true" scale="1 1 1" position="8.766 -2.691 -13.000" rotation="-90.000 360 90" 
+animation="property: scale; from: 1 1 1; to:1.2 1.2 1.2;  dur: 800; 
+dir: alternate; easing: linear; loop: true;">
+</a-image>
+
+
+  
+<!-- <a-video src="glow800(AR).mp4" position="-19.574 8.368 -16.630" scale="5.130 3.040 3"></a-video> -->
+  <a-entity  dynamic-body position="-11.601 -3.500 -11.623" rotation="0 -91.330 -1.000"
+            gltf-model="#spinosaurus" scale="0.05 0.05 0.05"
+            ></a-entity>
+            <a-entity  dynamic-body position="5.648 0.880 -8.078" rotation="0 -85 -1"
+            gltf-model="#spinosauru1" scale="30 35 45"
+            ></a-entity>
+            <a-entity   dynamic-body position="-16.454 0.880 -5.398" rotation="0 -85 -1"
+            gltf-model="#spinosauru2" scale="1 1 1"
+            ></a-entity>
+            <a-entity   dynamic-body position="16.454 0.880 -5.398" rotation="0 -85 -1"
+            gltf-model="#spinosauru3" scale="1 1 1"
+            ></a-entity>
+  <a-entity  dynamic-body position="-1.965 2.013 -6.690" rotation="0 0 0"              
+  gltf-model="#spinosauru" scale="20 20 20" modify-materials
+  material="side:back"
+  id="cam1" 
+    animation__5="property: rotation; to: 0 0 0;  dur: 150; easing: easeInOutQuad; startEvents: movecam_5; autoplay: false"></a-entity>
+<!-- <a-entity light="type: spot; intensity: 0.2 angle: 5 penumbra:0.1 " position="0 20 1"></a-entity> -->
+<!-- <a-entity light="type: ambient; intensity: 0.2  color: #ffffff"></a-entity> -->
+
+ <!-- <a-entity light="type: spot; angle: 30 target:spinosauru1  intensity: 0.1;" position="-1 0 -2"></a-entity> -->
+<!-- <a-entity link="href: index4.html; image: #lobster" position="12.246 -2.634 -5.417" scale="0.2 0.2 0.2" color="blue"></a-entity> -->
+
+<!-- <a-entity link="href:#img1; title: My Homepage; image: #homeThumbnail"></a-entity> -->
+</a-scene>
+
+<a-entity camera position="-5 0 6" id="camentity" rotation="0 0 0"
+animation__4="property: position; to:  0 0 6; dur: 1500; easing: easeInOutQuad; startEvents: movecam_3; autoplay: false"
+animation__3="property: position; to: 0 0 6; dur: 1500; easing: easeInOutQuad; startEvents: movecam_4; autoplay: false"
+animation__2="property: position; to: -1.965 1 -3.52; dur: 1500; easing: easeInOutQuad; startEvents: movecam_2; autoplay: false"
+animation__1_1="property: position; to: -11.520 7.000 -8.945; dur: 1500; easing: easeInOutQuad; startEvents: movecam_1; autoplay: false">
+
+<a-camera id="cam" look-controls="enabled:true" wasd-controls-enabled="false" >
+</a-camera>
+
+
+
+
+
+</a-entity>
+<script>
+document.querySelector('[camera]').removeAttribute('wasd-controls');
+</script>
+<!-- <a-entity id="ui" visible="false"> -->
+  <!-- <a-sphere material="side:back" radius="2"></a-sphere> -->
+  <!-- <a-cylinder material="side:back" position="1 0.75 -3" radius="0.5" height="1.5" color="red">  -->
+    <!-- <a-box position="0.5 0.5 0.3" scale="0.3 0.3 0.3" rotation="0 0 0" color="red" foo="src:#duck"></a-box> -->
+  <!-- <a-text position="1 -0.1 -0.5" color="green" value="back"></a-text> -->
+  <!-- <a-box scale="0.1 0.1 0.1" position="1 -0.2 -0.5" hide-ui color="green"></a-box> -->
+  
+
+<!-- </a-entity> -->
+<script>
+</script>
+     
+</a-scene>
+<!-- <a href="#img1">
+  <center> <img src="http://www.clipartbest.com/cliparts/9Tp/enR/9TpenRLTE.svg" style="position: fixed; top: 10px; right: 939px;" height="90"> </center>
+ </a> -->
+ 
+ <!-- lightbox container hidden with CSS -->
+
+ <style>
+  #fade {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+  }
+  
+  #light {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 600px;
+    max-height: 360px;
+    margin-left: -300px;
+    margin-top: -180px;
+    border: 2px solid #c4c8ce;
+    background: #c4c8ce;
+    z-index: 1002;
+    overflow: visible;
+  }
+  
+  #boxclose {
+
+    cursor: pointer;
+    color: rgb(206, 6, 6);
+    border: 1px solid #ee0d0d;
+    border-radius: 8px;
+    background: RGB(197, 200, 208);
+    font-size: 31px;
+   
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    z-index: 1002;
+    opacity: 0.9;
+  }
+  
+
+  
+  #fade:hover ~ #boxclose {
+    display:none;
+  }
+  
+  .test:hover ~ .test2 {
+    display: none;
+  }
+
+    body {
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #e40521;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px -14px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #f1f1f1;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #818181;
+    }
+
+    .nav__logout {
+  margin-top: 38rem;
+}
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 8px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+    .opennav{
+      position: fixed;
+      top:3%;
+      right:93%;
+      height:50px; 
+      width:auto; 
+      max-width:50px;
+    }
+    
+    @media screen and (max-width: 760px) {
+      .sidenav {
+        height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #e40521;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+
+      }
+      .sidenav a {
+        font-size: 18px;
+      }
+ 
+    .nav__icon {
+  font-size: 1.2rem;
+  margin-right: .5rem;
+}
+ul{
+  padding-left : 1rem;
+}
+.nav__logout {
+  margin-top: 30rem;
+}
+.opennav{
+      position: fixed;
+      top:1%;
+      right:88%;
+      height:40px; 
+      width:auto; 
+      max-width:40px;
+    }
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 8px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+    
+}
+
+    
+    </style>
+  <script>
+    window.document.onkeydown = function(e) {
+    if (!e) {
+      e = event;
+    }
+    if (e.keyCode == 27) {
+      lightbox_close();
+    }
+  }
+  
+  function lightbox_open() {
+    var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+    window.scrollTo(0, 0);
+    document.getElementById('light').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
+    lightBoxVideo.play();
+  }
+  
+  function lightbox_close() {
+    var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+    document.getElementById('light').style.display = 'none';
+    document.getElementById('fade').style.display = 'none';
+    lightBoxVideo.pause();
+  }
+  </script>
+                 
+                   
+                      
+  <div id="light" class="modal-body">
+    <a class="boxclose" id="boxclose" onclick="lightbox_close();"><b>X</b></a>
+    <video id="VisaChipCardVideo" width="100%" controls>
+        <source src="Virtual Reality _ Augmented Reality - Novac Technology Solutions.mp4" type="video/mp4">
+        <!--Browser does not support <video> tag -->
+      </video>
+  </div>
+
+  
+
+  
+  <div id="fade" onClick="lightbox_close();"></div>
+  
+  
+  <nav class="sidebar">
+  <div id="mySidenav" class="sidenav" >
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" >&times;</a>
+    <!-- <hr>
+    <ul>
+     <a href="index2.php">
+      <i class='bx bx-home nav__icon' ></i>
+      <span class="d-none d-md-inline"> Operation Theatre</span>
+      </a>
+    </ul>
+    <hr> --> 
+    <ul>
+      
+      <a href="index9.html">
+        <i class='bx bx-transfer-alt nav__icon'></i>
+        <span class="d-none d-md-inline"> Lobby</span></a>
+    
+    </ul>
+    <hr>
+    <ul>
+      
+      <a href="index8.html">
+        <i class='bx bx-transfer-alt nav__icon'></i>
+        <span class="d-none d-md-inline"> Lobby1</span></a>
+    
+    </ul>
+    <hr>
+    <ul>
+   
+    <a href="arveo.pdf" target="_blank" >
+      <i class='bx bxs-download nav__icon'></i>
+      <span class="d-none d-md-inline"> Download</span></a>
+ </a>
+  
+</ul>
+<hr>
+<ul>
+ 
+    <a href="#">
+      <i class='bx bxs-contact nav__icon' ></i>
+      <span class="d-none d-md-inline"> Contact</span></a>
+  
+</ul>
+
+<ul>
+ 
+  <a href="logout-user.php" id="clearButton" class="nav__logout" >
+    <i class='bx bx-log-out nav__icon'>
+
+    </i><span class="d-none d-md-inline"> Logout</span></a>
+
+
+</ul>
+  </div>
+</nav>
+
+  <span onclick="openNav()"><img src="opennav.png"  class="opennav" ></span>
+  
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "12%";
+    // document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  </script>
+  <!-- <button id="clearButton" style="position: fixed; top: 50px; right: 450px;">logout </button> -->
+  <!-- <button href="index2.html" style="position: fixed; top: 50px; right: 350px;">logt </button> -->
+ 
+</body>
+
+</html>
+<div id="firstVideo" type='text/nunjucks'>
+  <!-- <a-sky id="skyVideo" geometry="primitive: sphere;
+  width:1;
+  height: 1"
+  position="-2.258 2.440 -4.655" scale="0.0003 0.0003 0.000"  src="glow800(AR).mp4">
+  </a-sky>
+  <a-sky id="skyVideo" geometry="primitive: sphere;
+  width:1;
+  height: 1"
+  position="-1.698 2.440 -4.655" scale="0.0003 0.0003 0.000" visible="true"  src="glow800(AR).mp4">
+    </a-sky> -->
+  <a-sky  id="skyVideo" geometry="primitive: plane;"
+  position="87.464 5.332 20.583;" scale="-49.531 19.078 0.000" rotation="0 90.000 0" src="Virtual Reality _ Augmented Reality - Novac Technology Solutions.mp4"
+  animation=" pauseEvents: rotation-pause; 
+  resumeEvents: rotation-resume;" >
+ 
+
+
+  </a-sky>
+  </div>

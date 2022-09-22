@@ -1,0 +1,392 @@
+
+<html>
+<head>
+<script src="aframe.js"></script>
+<script src="component.js"></script>
+<script src="templatecomponent.js"></script>
+
+<link rel="stylesheet" href="css\bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="boxicons-master\css\boxicons.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  body {
+            opacity: -3;
+            transition: opacity 4.25s;
+            background-color: black;
+    }
+  </style>
+</head><!--   w w   w . d   e   m  o 2   s . c  o   m -->
+<!-- var vid = document.getElementById("myVideo");
+    vid.autoplay = false;
+    vid.load(); -->
+
+<body onload="document.body.style.opacity='1'">
+
+
+
+
+
+
+  <script>
+    // the component has to be defined before the <a-scene>
+    AFRAME.registerComponent("show-text", {
+      // a schema, so we can provide different <a-text>s
+      schema: {
+        txt: {type: "selector"}
+      },
+      // called upon initialisation
+      init: function() {
+        // on each click - toggle the visibility
+        this.el.addEventListener("mouseenter", evt => {
+          // if the text is invalid - lets get outta here
+          if (!this.data.txt) return; 
+          // get the current visibility
+          const visible = this.data.txt.getAttribute("visible") 
+          // set the visibility to its opposite
+          this.data.txt.setAttribute("visible", !visible) 
+        })
+        this.el.addEventListener("mouseleave", evt => {
+          // if the text is invalid - lets get outta here
+          if (!this.data.txt) return; 
+          // get the current visibility
+          const visible = this.data.txt.getAttribute("visible") 
+          // set the visibility to its opposite
+          this.data.txt.setAttribute("visible", false) 
+        })
+      }
+    })
+    </script>
+        <!-- <audio autoplay loop>
+    <source src="background.mp3" id="myvideo1" type="audio/mp3" />
+  </audio> -->
+
+
+    
+
+<a-scene cursor="rayOrigin: mouse"   vr-mode-ui="enabled:false">
+  <a-entity id="skyVideoTemplate" template="src: #"></a-entity>
+<a-assets>
+  <!-- <img id="duck" src="buttons\lock view.png"  foo="src:#duck"> -->
+    <img id="city" src="novac.png">
+</a-assets>
+
+<a-assets timeout="30000">
+  <img id="skyTexture5" src="01-hotsport.png">
+</a-assets>
+
+<a-sky id="image-360" rotation="0 0 0" radius="100" src="#city"></a-sky>
+
+
+<a-image src="#skyTexture5" onclick="hotspot() " link="href:index4.html;" visible="true" scale="1 1 1" position="13.680 -2.691 -13.000" rotation="-90.000 270 90" 
+animation="property: scale; from: 1 1 1; to:1.2 1.2 1.2;  dur: 800; 
+dir: alternate; easing: linear; loop: true;">
+</a-image>
+
+  
+<!-- <a-video src="glow800(AR).mp4" position="-19.574 8.368 -16.630" scale="5.130 3.040 3"></a-video> -->
+ 
+
+ <!-- <a-entity light="type: spot; angle: 30 target:spinosauru1  intensity: 0.1;" position="-1 0 -2"></a-entity> -->
+<!-- <a-entity link="href: index4.html; image: #lobster" position="12.246 -2.634 -5.417" scale="0.2 0.2 0.2" color="blue"></a-entity> -->
+
+<!-- <a-entity link="href:#img1; title: My Homepage; image: #homeThumbnail"></a-entity> -->
+</a-scene>
+
+<a-entity camera position="-5 0 6" id="camentity" rotation="0 0 0"
+>
+
+<a-camera id="cam" look-controls="enabled:true" wasd-controls-enabled="false" >
+</a-camera>
+
+
+
+
+
+</a-entity>
+<script>
+document.querySelector('[camera]').removeAttribute('wasd-controls');
+</script>
+<!-- <a-entity id="ui" visible="false"> -->
+  <!-- <a-sphere material="side:back" radius="2"></a-sphere> -->
+  <!-- <a-cylinder material="side:back" position="1 0.75 -3" radius="0.5" height="1.5" color="red">  -->
+    <!-- <a-box position="0.5 0.5 0.3" scale="0.3 0.3 0.3" rotation="0 0 0" color="red" foo="src:#duck"></a-box> -->
+  <!-- <a-text position="1 -0.1 -0.5" color="green" value="back"></a-text> -->
+  <!-- <a-box scale="0.1 0.1 0.1" position="1 -0.2 -0.5" hide-ui color="green"></a-box> -->
+  
+
+<!-- </a-entity> -->
+<script>
+</script>
+     
+</a-scene>
+<!-- <a href="#img1">
+  <center> <img src="http://www.clipartbest.com/cliparts/9Tp/enR/9TpenRLTE.svg" style="position: fixed; top: 10px; right: 939px;" height="90"> </center>
+ </a> -->
+ 
+ <!-- lightbox container hidden with CSS -->
+
+ <style>
+  #fade {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+  }
+  
+  #light {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 600px;
+    max-height: 360px;
+    margin-left: -300px;
+    margin-top: -180px;
+    border: 2px solid #c4c8ce;
+    background: #c4c8ce;
+    z-index: 1002;
+    overflow: visible;
+  }
+  
+  #boxclose {
+
+    cursor: pointer;
+    color: rgb(206, 6, 6);
+    border: 1px solid #ee0d0d;
+    border-radius: 8px;
+    background: RGB(197, 200, 208);
+    font-size: 31px;
+   
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    z-index: 1002;
+    opacity: 0.9;
+  }
+  
+
+  
+  #fade:hover ~ #boxclose {
+    display:none;
+  }
+  
+  .test:hover ~ .test2 {
+    display: none;
+  }
+
+    body {
+      font-family: "Lato", sans-serif;
+    }
+    
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #e40521;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px -14px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #f1f1f1;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #818181;
+    }
+
+    .nav__logout {
+  margin-top: 38rem;
+}
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 8px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+    .opennav{
+      position: fixed;
+      top:3%;
+      right:93%;
+      height:50px; 
+      width:auto; 
+      max-width:50px;
+    }
+    
+    @media screen and (max-width: 760px) {
+      .sidenav {
+        height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #e40521;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+
+      }
+      .sidenav a {
+        font-size: 18px;
+      }
+ 
+    .nav__icon {
+  font-size: 1.2rem;
+  margin-right: .5rem;
+}
+ul{
+  padding-left : 1rem;
+}
+.nav__logout {
+  margin-top: 30rem;
+}
+.opennav{
+      position: fixed;
+      top:1%;
+      right:88%;
+      height:40px; 
+      width:auto; 
+      max-width:40px;
+    }
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 8px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+    
+}
+
+    
+    </style>
+  <script>
+    window.document.onkeydown = function(e) {
+    if (!e) {
+      e = event;
+    }
+    if (e.keyCode == 27) {
+      lightbox_close();
+    }
+  }
+  
+  function lightbox_open() {
+    var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+    window.scrollTo(0, 0);
+    document.getElementById('light').style.display = 'block';
+    document.getElementById('fade').style.display = 'block';
+    lightBoxVideo.play();
+  }
+  
+  function lightbox_close() {
+    var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+    document.getElementById('light').style.display = 'none';
+    document.getElementById('fade').style.display = 'none';
+    lightBoxVideo.pause();
+  }
+  </script>
+
+  <div id="fade" onClick="lightbox_close();"></div>
+  
+  
+  <nav class="sidebar">
+  <div id="mySidenav" class="sidenav" >
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" >&times;</a>
+    <hr>
+    <ul>
+     <a href="index2.html">
+      <i class='bx bx-home nav__icon' ></i>
+      <span class="d-none d-md-inline"> Operation Theatre</span>
+      </a>
+    </ul>
+    <hr>
+    <ul>
+      
+      <a href="index4.html">
+        <i class='bx bx-transfer-alt nav__icon'></i>
+        <span class="d-none d-md-inline"> Lobby</span></a>
+    
+    </ul>
+    <hr>
+    <ul>
+   
+    <a href="arveo.pdf" target="_blank" >
+      <i class='bx bxs-download nav__icon'></i>
+      <span class="d-none d-md-inline"> Download</span></a>
+ </a>
+  
+</ul>
+<hr>
+<ul>
+ 
+    <a href="#">
+      <i class='bx bxs-contact nav__icon' ></i>
+      <span class="d-none d-md-inline"> Contact</span></a>
+  
+</ul>
+
+<ul>
+ 
+  <a href="logout-user.php" id="clearButton" class="nav__logout" >
+    <i class='bx bx-log-out nav__icon'>
+
+    </i><span class="d-none d-md-inline"> Logout</span></a>
+
+
+</ul>
+  </div>
+</nav>
+
+  <span onclick="openNav()"><img src="opennav.png" class="opennav"></span>
+  
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "12%";
+    // document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  </script>
+  <!-- <button id="clearButton" style="position: fixed; top: 50px; right: 450px;">logout </button> -->
+  <!-- <button href="index2.html" style="position: fixed; top: 50px; right: 350px;">logt </button> -->
+ 
+</body>
+
+</html>
